@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace TdrPenafiel.Models
 {
-    internal class PostResponse
+    public class PostResponse
     {
+        public string uuid { get; set; }
+
+        public string status { get; set; }
+
+        public string descripcion { get; set; }
+
+
     }
 }
