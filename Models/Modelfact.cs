@@ -171,7 +171,7 @@ namespace TdrPenafiel.Models
             using (SqlConnection connection = new SqlConnection(cadena2))
             {
 
-                using (SqlCommand selectCommand = new SqlCommand("sp_NotificacionesLiverded", connection))
+                using (SqlCommand selectCommand = new SqlCommand("sp_NotificacionesPenafiel", connection))
                 {
 
                     selectCommand.CommandType = CommandType.StoredProcedure;

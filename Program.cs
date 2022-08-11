@@ -107,51 +107,51 @@ namespace TdrPenafiel
                                                     if (counter > 1)
                                                     {
                                                         values = line.Split(';');
-                                                        string col1 = values[0];
-                                                        string col2 = values[1];
-                                                        string col3 = values[2];
-                                                        string col4 = values[3];
-                                                        string col5 = values[4];
-                                                        string col6 = values[5];
-                                                        string col7 = values[6];
-                                                        string col8 = values[7];
-                                                        string col9 = values[8];
-                                                        string col10 = values[9];
-                                                        string col11 = values[10];
-                                                        string col12 = values[11];
-                                                        string col13 = values[12];
-                                                        string col14 = values[13];
-                                                        string col15 = values[14];
-                                                        string col16 = values[15];
-                                                        string col17 = values[16];
-                                                        string col18 = values[17];
-                                                        string col19 = values[18];
-                                                        string col20 = values[19];
-                                                        string col21 = values[20];
-                                                        string col22 = values[21];
-                                                        string col23 = values[22];
-                                                        string col24 = values[23];
-                                                        string col25 = values[24];
-                                                        string col26 = values[25];
-                                                        string col27 = values[26];
+                                                        //string col1 = values[0];
+                                                        //string col2 = values[1];
+                                                        //string col3 = values[2];
+                                                        //string col4 = values[3];
+                                                        //string col5 = values[4];
+                                                        //string col6 = values[5];
+                                                        //string col7 = values[6];
+                                                        //string col8 = values[7];
+                                                        //string col9 = values[8];
+                                                        //string col10 = values[9];
+                                                        //string col11 = values[10];
+                                                        //string col12 = values[11];
+                                                        //string col13 = values[12];
+                                                        //string col14 = values[13];
+                                                        //string col15 = values[14];
+                                                        //string col16 = values[15];
+                                                        //string col17 = values[16];
+                                                        //string col18 = values[17];
+                                                        //string col19 = values[18];
+                                                        //string col20 = values[19];
+                                                        //string col21 = values[20];
+                                                        //string col22 = values[21];
+                                                        //string col23 = values[22];
+                                                        //string col24 = values[23];
+                                                        //string col25 = values[24];
+                                                        //string col26 = values[25];
+                                                        //string col27 = values[26];
                                                         string Av_cmd_code = values[27];
                                                         string Av_cmd_description = values[28];
                                                         string Af_count = values[29];
                                                         string Av_countunit = values[30];
-                                                        string col32 = values[31];
-                                                        string col33 = values[32];
-                                                        string col34 = values[33];
-                                                        string col35 = values[34];
+                                                        //string col32 = values[31];
+                                                        //string col33 = values[32];
+                                                        //string col34 = values[33];
+                                                        //string col35 = values[34];
                                                         string Af_weight = values[35];
-                                                        string col37 = values[36];
-                                                        string col38 = values[37];
-                                                        string col39 = values[38];
+                                                        //string col37 = values[36];
+                                                        //string col38 = values[37];
+                                                        //string col39 = values[38];
 
                                                         if (Av_cmd_code != "")
                                                         {
 
-                                                            //    facLabControler.GetMerc(Ai_orden, Av_cmd_code, Av_cmd_description, Af_weight, Av_weightunit, Af_count, Av_countunit);
-                                                            //    facLabControler.DeleteMerc(Ai_orden);
+                                                                facLabControler.GetMerc(Ai_orden, Av_cmd_code, Av_cmd_description, Af_weight, Av_weightunit, Af_count, Av_countunit);
+                                                                facLabControler.DeleteMerc(Ai_orden);
                                                         }
                                                     }
                                                     counter++;
