@@ -102,7 +102,7 @@ namespace TdrPenafiel
                                             {
                                                 string esegmento = isegm["segmento"].ToString();
                                                 int counter = 1;
-                                                foreach (string line in File.ReadLines(sourceFile, Encoding.Default))
+                                                foreach (string line in File.ReadLines(sourceFile, Encoding.UTF8))
                                                 {
                                                     if (counter > 1)
                                                     {
@@ -135,7 +135,8 @@ namespace TdrPenafiel
                                                         //string col26 = values[25];
                                                         //string col27 = values[26];
                                                         string Av_cmd_code = values[27];
-                                                        string Av_cmd_description = values[28];
+                                                        string descrip = values[28];
+                                                        string Av_cmd_description = descrip.Replace("\"","''");
                                                         string Af_count = values[29];
                                                         string Av_countunit = values[30];
                                                         //string col32 = values[31];
@@ -151,13 +152,13 @@ namespace TdrPenafiel
                                                         {
 
                                                                 facLabControler.GetMerc(Ai_orden, Av_cmd_code, Av_cmd_description, Af_weight, Av_weightunit, Af_count, Av_countunit);
-                                                                facLabControler.DeleteMerc(Ai_orden);
+                                                                
                                                         }
                                                     }
                                                     counter++;
                                                 }
 
-
+                                                facLabControler.DeleteMerc(Ai_orden);
                                                 //string destinationFile = @"\\10.223.208.41\Users\Administrator\Documents\LIVERDEDUPLOADS\" + item.Name;
                                                 string destinationFile = @"C:\Administración\Proyecto PENAFIEL\Procesadas\" + item.Name;
                                                 System.IO.File.Move(sourceFile, destinationFile);
