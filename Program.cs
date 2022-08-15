@@ -326,9 +326,17 @@ namespace TdrPenafiel
                                     results.Add("Ver el historial de errores para mas información, copiar el error y reportar a TI.");
                                     string tipom = "3";
                                     string titulo = "Error en el segmento: ";
-                                    string mensaje = "Ver el historial de errores para mas información, copiar el error y reportar a TI.";
+                                    //string mensaje = "Ver el historial de errores para mas información, copiar el error y reportar a TI.";
                                     DataTable updateLeg = facLabControler.UpdateLeg(leg, tipom);
-                                    facLabControler.enviarNotificacion(leg, titulo, mensaje);
+
+                                    DataTable VerErrores = facLabControler.VerErrores(leg);
+                                    foreach (DataRow itemr in VerErrores.Rows)
+                                    {
+                                        string erro1 = itemr["Erro1"].ToString();
+                                        string erro2 = itemr["Erro2"].ToString();
+                                        string mensaje = "Error 1: " + erro1 + "\r\n" + "Error 2: " + erro2;
+                                        facLabControler.enviarNotificacion(leg, titulo, mensaje);
+                                    }
                                 }
                             }
                             else
@@ -338,9 +346,16 @@ namespace TdrPenafiel
                                 results.Add("Error al generar carta porte.");//mostrar 
                                 string tipom = "3";
                                 string titulo = "Error en el segmento: ";
-                                string mensaje = "Error al generar carta porte.";
+                                //string mensaje = "Error al generar carta porte.";
                                 DataTable updateLeg = facLabControler.UpdateLeg(leg, tipom);
-                                facLabControler.enviarNotificacion(leg, titulo, mensaje);
+                                DataTable VerErrores = facLabControler.VerErrores(leg);
+                                foreach (DataRow itemr in VerErrores.Rows)
+                                {
+                                    string erro1 = itemr["Erro1"].ToString();
+                                    string erro2 = itemr["Erro2"].ToString();
+                                    string mensaje = "Error 1: " + erro1 + "\r\n" + "Error 2: " + erro2;
+                                    facLabControler.enviarNotificacion(leg, titulo, mensaje);
+                                }
                             }
                         }
                         else
@@ -363,9 +378,16 @@ namespace TdrPenafiel
                         results.Add("Error al validar el segmento.");//mostrar 
                         string tipom = "3";
                         string titulo = "Error en el segmento: ";
-                        string mensaje = "Error al validar el segmento.";
+                        //string mensaje = "Error al validar el segmento.";
                         DataTable updateLeg = facLabControler.UpdateLeg(leg, tipom);
-                        facLabControler.enviarNotificacion(leg, titulo, mensaje);
+                        DataTable VerErrores = facLabControler.VerErrores(leg);
+                        foreach (DataRow itemr in VerErrores.Rows)
+                        {
+                            string erro1 = itemr["Erro1"].ToString();
+                            string erro2 = itemr["Erro2"].ToString();
+                            string mensaje = "Error 1: " + erro1 + "\r\n" + "Error 2: " + erro2;
+                            facLabControler.enviarNotificacion(leg, titulo, mensaje);
+                        }
                     }
                 }
                 catch (Exception)
@@ -375,9 +397,16 @@ namespace TdrPenafiel
                     results.Add("Segmento invalido");
                     string tipom = "3";
                     string titulo = "Error en el segmento: ";
-                    string mensaje = "Segmento invalido";
+                    //string mensaje = "Segmento invalido";
                     DataTable updateLeg = facLabControler.UpdateLeg(leg, tipom);
-                    facLabControler.enviarNotificacion(leg, titulo, mensaje);
+                    DataTable VerErrores = facLabControler.VerErrores(leg);
+                    foreach (DataRow itemr in VerErrores.Rows)
+                    {
+                        string erro1 = itemr["Erro1"].ToString();
+                        string erro2 = itemr["Erro2"].ToString();
+                        string mensaje = "Error 1: " + erro1 + "\r\n" + "Error 2: " + erro2;
+                        facLabControler.enviarNotificacion(leg, titulo, mensaje);
+                    }
                 }
             }
             else { results.Add("Error3"); }

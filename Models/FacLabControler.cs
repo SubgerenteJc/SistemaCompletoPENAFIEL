@@ -114,7 +114,10 @@ namespace TdrPenafiel.Models
         {
             this.modelFact.RegEjecucion();
         }
-
+        public DataTable VerErrores(string leg)
+        {
+            return this.modelFact.VerErrores(leg);
+        }
         public string minInvoice(string ivh)
         {
             DataTable lastInvoice = this.modelFact.getLastInvoice(ivh);
