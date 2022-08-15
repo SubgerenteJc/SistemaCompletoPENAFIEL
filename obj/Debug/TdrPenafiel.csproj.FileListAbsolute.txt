@@ -12,3 +12,7 @@ C:\Users\Lenovo\source\repos\TdrPenafiel\TdrPenafiel\obj\Debug\TdrPenafiel.cspro
 C:\Users\Lenovo\source\repos\TdrPenafiel\TdrPenafiel\obj\Debug\TdrPenafiel.csproj.CopyComplete
 C:\Users\Lenovo\source\repos\TdrPenafiel\TdrPenafiel\obj\Debug\TdrPenafiel.exe
 C:\Users\Lenovo\source\repos\TdrPenafiel\TdrPenafiel\obj\Debug\TdrPenafiel.pdb
+C:\Users\Lenovo\source\repos\TdrPenafiel\TdrPenafiel\bin\Debug\TdrPenafiel.exe.manifest
+C:\Users\Lenovo\source\repos\TdrPenafiel\TdrPenafiel\bin\Debug\TdrPenafiel.application
+C:\Users\Lenovo\source\repos\TdrPenafiel\TdrPenafiel\obj\Debug\TdrPenafiel.exe.manifest
+C:\Users\Lenovo\source\repos\TdrPenafiel\TdrPenafiel\obj\Debug\TdrPenafiel.application

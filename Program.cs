@@ -63,8 +63,8 @@ namespace TdrPenafiel
         {
             string[] values;
             DataTable tbl = new DataTable();
-            //DirectoryInfo di24 = new DirectoryInfo(@"\\10.223.208.41\Users\Administrator\Documents\LIVERDED");
-            DirectoryInfo di24 = new DirectoryInfo(@"C:\Administración\Proyecto PENAFIEL\Ordenes");
+            DirectoryInfo di24 = new DirectoryInfo(@"\\10.223.208.41\Users\Administrator\Documents\PENAFIEL");
+            //DirectoryInfo di24 = new DirectoryInfo(@"C:\Administración\Proyecto PENAFIEL\Ordenes");
             FileInfo[] files24 = di24.GetFiles("*.txt");
 
             int cantidad24 = files24.Length;
@@ -72,22 +72,11 @@ namespace TdrPenafiel
             {
                 foreach (var item in files24)
                 {
-                    //string sourceFile = @"\\10.223.208.41\Users\Administrator\Documents\LIVERDED\" + item.Name;
-                    string sourceFile = @"C:\Administración\Proyecto PENAFIEL\Ordenes\" + item.Name;
+                    string sourceFile = @"\\10.223.208.41\Users\Administrator\Documents\PENAFIEL\" + item.Name;
+                    //string sourceFile = @"C:\Administración\Proyecto PENAFIEL\Ordenes\" + item.Name;
                     string Ai_orden = item.Name.Replace(".txt", "");
                     string Av_weightunit = "KGM";
-                    
-
-
-                    //facLabControler.getMercancias(Ai_orden, Av_cmd_code, Av_cmd_description, Af_weight, Av_weightunit, Af_count, Av_countunit);
-                    DataTable sorden = facLabControler.GetEstatus(Ai_orden);
-                    if (sorden.Rows.Count > 0)
-                    {
-                        foreach (DataRow sitem in sorden.Rows)
-                        {
-                            string estatus = sitem["estatus"].ToString();
-                            if (estatus == "PLN" || estatus == "STD")
-                            {
+        
                                 DataTable rtds = facLabControler.ObtSegmento(Ai_orden);
                                 if (rtds.Rows.Count > 0)
                                 {
@@ -159,8 +148,8 @@ namespace TdrPenafiel
                                                 }
 
                                                 facLabControler.DeleteMerc(Ai_orden);
-                                                //string destinationFile = @"\\10.223.208.41\Users\Administrator\Documents\LIVERDEDUPLOADS\" + item.Name;
-                                                string destinationFile = @"C:\Administración\Proyecto PENAFIEL\Procesadas\" + item.Name;
+                                                string destinationFile = @"\\10.223.208.41\Users\Administrator\Documents\PENAFIELUPLOADS\" + item.Name;
+                                                //string destinationFile = @"C:\Administración\Proyecto PENAFIEL\Procesadas\" + item.Name;
                                                 System.IO.File.Move(sourceFile, destinationFile);
 
 
@@ -182,6 +171,10 @@ namespace TdrPenafiel
                                                         {
                                                             string tipomensaje = "9";
                                                             DataTable updateLegs = facLabControler.UpdateLeg(esegmento, tipomensaje);
+                                                            string titulo = "Error en el segmento: ";
+                                                            string mensaje = "Error la carta porte  ya fue timbrada";
+                                                            facLabControler.enviarNotificacion(esegmento, titulo, mensaje);
+
                                                         }
                                                         else
                                                         {
@@ -199,6 +192,9 @@ namespace TdrPenafiel
                                                                     string rupdate = item3["segmento"].ToString();
                                                                     string lupdate = item3["estatus"].ToString();
                                                                 }
+                                                                string titulo = "Error en el segmento: ";
+                                                                string mensaje = "Error la carta porte  ya fue timbrada";
+                                                                facLabControler.enviarNotificacion(esegmento, titulo, mensaje);
                                                             }
                                                             else  // PASO 5 - SI NO EXISTE CONTINUA CON EL PROCESO DE TIMBRADO
                                                             {
@@ -239,6 +235,9 @@ namespace TdrPenafiel
                                                             string rupdate = item3["segmento"].ToString();
                                                             string lupdate = item3["estatus"].ToString();
                                                         }
+                                                        string titulo = "Error en el segmento: ";
+                                                        string mensaje = "Error la carta porte  ya fue timbrada";
+                                                        facLabControler.enviarNotificacion(esegmento, titulo, mensaje);
                                                     }
                                                     else  // PASO 5 - SI NO EXISTE CONTINUA CON EL PROCESO DE TIMBRADO
                                                     {
@@ -266,16 +265,9 @@ namespace TdrPenafiel
 
                                     }
                                 }
-                            }
-                            else
-                            {
-                                item.Delete();
-                                string titulo = "Error en la orden: ";
-                                string mensaje = "La orden no se va a procesar porque tiene el estatus: " + estatus + " " + "y debe de ser PLN  o STD";
-                                facLabControler.enviarNotificacion(Ai_orden, titulo, mensaje);
-                            }
-                        }
-                    }
+                           
+                        
+                   
 
 
 
@@ -359,7 +351,7 @@ namespace TdrPenafiel
                             results.Add("Error en la obtención de datos: \r\n" + validaCFDI[0]);//mostrar 
                             string tipom = "5";
                             string titulo = "Error en el segmento: ";
-                            string mensaje = "Error en la obtención de datos:";
+                            string mensaje = "Error en la obtención de datos:" + validaCFDI[0];
                             DataTable updateLeg = facLabControler.UpdateLeg(leg, tipom);
                             facLabControler.enviarNotificacion(leg, titulo, mensaje);
                         }
