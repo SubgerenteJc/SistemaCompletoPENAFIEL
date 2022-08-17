@@ -74,7 +74,8 @@ namespace TdrPenafiel
                 {
                     string sourceFile = @"\\10.223.208.41\Users\Administrator\Documents\PENAFIEL\" + item.Name;
                     //string sourceFile = @"C:\Administración\Proyecto PENAFIEL\Ordenes\" + item.Name;
-                    string Ai_orden = item.Name.Replace(".txt", "");
+                    string lna = item.Name.ToLower();
+                    string Ai_orden = lna.Replace(".txt", "");
                     string Av_weightunit = "KGM";
         
                                 DataTable rtds = facLabControler.ObtSegmento(Ai_orden);
