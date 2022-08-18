@@ -343,7 +343,8 @@ namespace TdrPenafiel
 
 
                                         //string esegmento = "1307568";
-                                        var request2819 = (HttpWebRequest)WebRequest.Create("https://canal1.xsa.com.mx:9050/bf2e1036-ba47-49a0-8cd9-e04b36d5afd4/cfdis?folioEspecifico=" + esegmento);
+                                        int segm = Int32.Parse(esegmento);
+                                        var request2819 = (HttpWebRequest)WebRequest.Create("https://canal1.xsa.com.mx:9050/bf2e1036-ba47-49a0-8cd9-e04b36d5afd4/cfdis?folioEspecifico="+segm);
                                         var response2819 = (HttpWebResponse)request2819.GetResponse();
                                         var responseString2819 = new StreamReader(response2819.GetResponseStream()).ReadToEnd();
 
