@@ -290,6 +290,45 @@ namespace TdrPenafiel.Models
             }
 
         }
+        public void GetMerca(string Ai_orden,string segmentod, string Av_cmd_code, string Av_cmd_description, string Af_weight, string Av_weightunit, string Af_count, string Av_countunit)
+        {
+            string cadena2 = @"Data source=172.24.16.112; Initial Catalog=TMWSuite; User ID=sa; Password=tdr9312;Trusted_Connection=false;MultipleActiveResultSets=true";
+            //DataTable dataTable = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(cadena2))
+            {
+
+                using (SqlCommand selectCommand = new SqlCommand("sp_Obtiene_Stops_Orden_JC", connection))
+                {
+
+                    selectCommand.CommandType = CommandType.StoredProcedure;
+                    selectCommand.CommandTimeout = 1000;
+                    selectCommand.Parameters.AddWithValue("@Ai_orden", Ai_orden);
+                    selectCommand.Parameters.AddWithValue("@Ai_Segmento", segmentod);
+                    selectCommand.Parameters.AddWithValue("@Av_cmd_code", Av_cmd_code);
+                    selectCommand.Parameters.AddWithValue("@Av_cmd_description", Av_cmd_description);
+                    selectCommand.Parameters.AddWithValue("@Af_weight", Af_weight);
+                    selectCommand.Parameters.AddWithValue("@Av_weightunit", Av_weightunit);
+                    selectCommand.Parameters.AddWithValue("@Af_count", Af_count);
+                    selectCommand.Parameters.AddWithValue("@Av_countunit", Av_countunit);
+
+                    try
+                    {
+                        connection.Open();
+                        selectCommand.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        string message = ex.Message;
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+
+        }
         public void DeleteMerc(string Ai_orden)
         {
             string cadena2 = @"Data source=172.24.16.112; Initial Catalog=TMWSuite; User ID=sa; Password=tdr9312;Trusted_Connection=false;MultipleActiveResultSets=true";
@@ -304,6 +343,37 @@ namespace TdrPenafiel.Models
                     selectCommand.CommandType = CommandType.StoredProcedure;
                     selectCommand.CommandTimeout = 1000;
                     selectCommand.Parameters.AddWithValue("@Ai_orden", Ai_orden);
+                    try
+                    {
+                        connection.Open();
+                        selectCommand.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        string message = ex.Message;
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+
+        }
+        public void DeleteMerca(string segmentod)
+        {
+            string cadena2 = @"Data source=172.24.16.112; Initial Catalog=TMWSuite; User ID=sa; Password=tdr9312;Trusted_Connection=false;MultipleActiveResultSets=true";
+            //DataTable dataTable = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(cadena2))
+            {
+
+                using (SqlCommand selectCommand = new SqlCommand("sp_ordenborrar_mercancias_JC", connection))
+                {
+
+                    selectCommand.CommandType = CommandType.StoredProcedure;
+                    selectCommand.CommandTimeout = 1000;
+                    selectCommand.Parameters.AddWithValue("@lgh_number", segmentod);
                     try
                     {
                         connection.Open();
