@@ -56,6 +56,7 @@ namespace TdrPenafiel.Models
             establecerConexion();
             comando = new SqlCommand(query, conexion);
             comando.CommandType = CommandType.Text;
+            comando.CommandTimeout = 19900000;
             string resultado = "";
             try
             {
@@ -89,6 +90,7 @@ namespace TdrPenafiel.Models
             establecerConexion();
             comando = new SqlCommand(query, conexion);
             comando.CommandType = CommandType.Text;
+            comando.CommandTimeout = 19900000;
             try
             {
                 conexion.Open();
@@ -129,7 +131,7 @@ namespace TdrPenafiel.Models
             {
                 comando = new SqlCommand(query, conexion);
                 comando.CommandType = CommandType.Text;
-                comando.CommandTimeout = 30000;
+                comando.CommandTimeout = 19900000;
                 conexion.Open();
 
                 SqlDataAdapter da = new SqlDataAdapter(comando);

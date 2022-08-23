@@ -75,6 +75,8 @@ namespace TdrPenafiel
                 {
                     string sourceFile = @"\\10.223.208.41\Users\Administrator\Documents\PENAFIEL\" + item.Name;
                     //string sourceFile = @"C:\Administración\Proyecto PENAFIEL\Ordenes\" + item.Name;
+                    string[] strAllLines = File.ReadAllLines(sourceFile, Encoding.UTF8);
+                    File.WriteAllLines(sourceFile, strAllLines.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray());
                     string lna = item.Name.ToLower();
                     string Ai_orden = lna.Replace(".txt", "");
                     string s2 = "-";
