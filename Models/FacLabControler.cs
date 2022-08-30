@@ -27,6 +27,10 @@ namespace TdrPenafiel.Models
         {
             this.modelFact.DeleteMerc(Ai_orden);
         }
+        public DataTable ExisteStatus(string seg)
+        {
+            return this.modelFact.ExisteStatus(seg);
+        }
         public void DeleteMerca(string segmentod)
         {
             this.modelFact.DeleteMerca(segmentod);
