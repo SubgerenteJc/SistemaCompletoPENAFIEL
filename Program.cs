@@ -167,7 +167,7 @@ namespace TdrPenafiel
                                     foreach (var rlist in separados819)
                                     {
                                         string serie = rlist.serie;
-                                        if (serie == "TDRXP" || serie == "TDRZP")
+                                        if (serie == "TDRXP")
                                         {
                                             DataTable vstatus = facLabControler.ExisteStatus(segmentod);
                                             foreach (DataRow lstu in vstatus.Rows)
@@ -301,7 +301,7 @@ namespace TdrPenafiel
                     {
                         //SI NO ES DEVOLUCION EJECUTA EL PROCEDIMIENTO NORMAL
                         string Av_weightunit = "KGM";
-
+                        
 
                         DataTable rtds = facLabControler.ObtSegmento(Ai_orden);
                         if (rtds.Rows.Count > 0)
@@ -394,13 +394,31 @@ namespace TdrPenafiel
                                             foreach (var rlist in separados819)
                                             {
                                                 string serie = rlist.serie;
-                                                if (serie == "TDRXP" || serie == "TDRZP")
+                                                if (serie == "TDRXP")
                                                 {
-                                                    string tipomensaje = "9";
-                                                    DataTable updateLegs = facLabControler.UpdateLeg(esegmento, tipomensaje);
-                                                    string titulo = "Error en el segmento: ";
-                                                    string mensaje = "Error la carta porte  ya fue timbrada";
-                                                    facLabControler.enviarNotificacion(esegmento, titulo, mensaje);
+                                                    DataTable vstatus = facLabControler.ExisteStatus(esegmento);
+                                                    foreach (DataRow lstu in vstatus.Rows)
+                                                    {
+                                                        string estatus = lstu["estatus"].ToString();
+                                                        int vsegm = Int32.Parse(estatus);
+
+                                                        if (vsegm != 2)
+                                                        {
+                                                            string tipomensaje = "9";
+                                                            DataTable updateLegs = facLabControler.UpdateLeg(esegmento, tipomensaje);
+                                                            string titulo = "Error en el segmento: ";
+                                                            string mensaje = "Error la carta porte ya fue timbrada.";
+                                                            facLabControler.enviarNotificacion(esegmento, titulo, mensaje);
+                                                        }
+                                                        else
+                                                        {
+                                                            string titulo = "Error en el segmento: ";
+                                                            string mensaje = "Error la carta porte ya fue timbrada.";
+                                                            facLabControler.enviarNotificacion(esegmento, titulo, mensaje);
+                                                        }
+                                                    }
+
+                                                    
 
                                                 }
                                                 else
@@ -412,16 +430,29 @@ namespace TdrPenafiel
                                                         //string foliorepetido = item2["segmento"].ToString();
                                                         //Console.WriteLine("El Folio ya esta timbrado" + foliorepetido);
 
-                                                        string tipom = "9";
-                                                        DataTable updateLeg = facLabControler.UpdateLeg(esegmento, tipom);
-                                                        foreach (DataRow item3 in updateLeg.Rows)
+                                                        DataTable vstatus = facLabControler.ExisteStatus(esegmento);
+                                                        foreach (DataRow lstu in vstatus.Rows)
                                                         {
-                                                            string rupdate = item3["segmento"].ToString();
-                                                            string lupdate = item3["estatus"].ToString();
+                                                            string estatus = lstu["estatus"].ToString();
+                                                            int vsegm = Int32.Parse(estatus);
+
+                                                            if (vsegm != 2)
+                                                            {
+                                                                string tipomensaje = "9";
+                                                                DataTable updateLegs = facLabControler.UpdateLeg(esegmento, tipomensaje);
+                                                                string titulo = "Error en el segmento: ";
+                                                                string mensaje = "Error la carta porte ya fue timbrada.";
+                                                                facLabControler.enviarNotificacion(esegmento, titulo, mensaje);
+                                                            }
+                                                            else
+                                                            {
+                                                                string titulo = "Error en el segmento: ";
+                                                                string mensaje = "Error la carta porte ya fue timbrada.";
+                                                                facLabControler.enviarNotificacion(esegmento, titulo, mensaje);
+                                                            }
                                                         }
-                                                        string titulo = "Error en el segmento: ";
-                                                        string mensaje = "Error la carta porte  ya fue timbrada";
-                                                        facLabControler.enviarNotificacion(esegmento, titulo, mensaje);
+
+                                                        
                                                     }
                                                     else  // PASO 5 - SI NO EXISTE CONTINUA CON EL PROCESO DE TIMBRADO
                                                     {
@@ -454,17 +485,29 @@ namespace TdrPenafiel
                                             {
                                                 //string foliorepetido = item2["segmento"].ToString();
                                                 //Console.WriteLine("El Folio ya esta timbrado" + esegmento);
-
-                                                string tipom = "9";
-                                                DataTable updateLeg = facLabControler.UpdateLeg(esegmento, tipom);
-                                                foreach (DataRow item3 in updateLeg.Rows)
+                                                DataTable vstatus = facLabControler.ExisteStatus(esegmento);
+                                                foreach (DataRow lstu in vstatus.Rows)
                                                 {
-                                                    string rupdate = item3["segmento"].ToString();
-                                                    string lupdate = item3["estatus"].ToString();
+                                                    string estatus = lstu["estatus"].ToString();
+                                                    int vsegm = Int32.Parse(estatus);
+
+                                                    if (vsegm != 2)
+                                                    {
+                                                        string tipomensaje = "9";
+                                                        DataTable updateLegs = facLabControler.UpdateLeg(esegmento, tipomensaje);
+                                                        string titulo = "Error en el segmento: ";
+                                                        string mensaje = "Error la carta porte ya fue timbrada.";
+                                                        facLabControler.enviarNotificacion(esegmento, titulo, mensaje);
+                                                    }
+                                                    else
+                                                    {
+                                                        string titulo = "Error en el segmento: ";
+                                                        string mensaje = "Error la carta porte ya fue timbrada.";
+                                                        facLabControler.enviarNotificacion(esegmento, titulo, mensaje);
+                                                    }
                                                 }
-                                                string titulo = "Error en el segmento: ";
-                                                string mensaje = "Error la carta porte  ya fue timbrada";
-                                                facLabControler.enviarNotificacion(esegmento, titulo, mensaje);
+
+                                               
                                             }
                                             else  // PASO 5 - SI NO EXISTE CONTINUA CON EL PROCESO DE TIMBRADO
                                             {
@@ -781,8 +824,8 @@ namespace TdrPenafiel
 
                     DateTime fecha1 = Convert.ToDateTime(Fecha);
                     string fechaFinal = fecha1.Year + "-" + fecha1.Month + "-" + fecha1.Day + " " + fecha1.Hour + ":" + fecha1.Minute + ":" + fecha1.Second + "." + fecha1.Millisecond;
-
-                    facLabControler.generadas(folioFactura, serieFactura, uuidFactura, pdf_xml_descargaFactura, pdf_descargaFactura, xlm_descargaFactura, cancelFactura, leg, fechaFinal, Total, Moneda, RFC, Origen, Destino);
+                    string Origenn = "1";
+                    facLabControler.generadas(folioFactura, serieFactura, uuidFactura, pdf_xml_descargaFactura, pdf_descargaFactura, xlm_descargaFactura, cancelFactura, leg, fechaFinal, Total, Moneda, RFC, Origenn, Destino);
                     result.Add(folioFactura);
                     result.Add(serieFactura);
                     result.Add(uuidFactura);
