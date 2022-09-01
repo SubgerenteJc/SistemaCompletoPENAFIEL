@@ -226,6 +226,22 @@ namespace TdrPenafiel
                                                             }
                                                         }
                                                     }
+                                                    else
+                                                    {
+                                                        DataTable results = facLabControler.TieneMercancias(segmentod);
+                                                        //PASO 4 - SI EXISTE LE ACTUALIZA EL ESTATUS A 9
+                                                        foreach (DataRow resl in results.Rows)
+                                                        {
+                                                            string totald = resl["total"].ToString();
+                                                            int num_var = Int32.Parse(totald);
+                                                            if (num_var > 0)
+                                                            {
+
+                                                                valida(segmentod);
+
+                                                            }
+                                                        }
+                                                    }
                                                 }
                                             }
                                             else  // PASO 5 - SI NO EXISTE CONTINUA CON EL PROCESO DE TIMBRADO
@@ -283,6 +299,22 @@ namespace TdrPenafiel
                                                         string titulo = "Error en el segmento: ";
                                                         string mensaje = "Error la carta porte ya fue timbrada.";
                                                         facLabControler.enviarNotificacion(segmentod, titulo, mensaje);
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                                DataTable results = facLabControler.TieneMercancias(segmentod);
+                                                //PASO 4 - SI EXISTE LE ACTUALIZA EL ESTATUS A 9
+                                                foreach (DataRow resl in results.Rows)
+                                                {
+                                                    string totald = resl["total"].ToString();
+                                                    int num_var = Int32.Parse(totald);
+                                                    if (num_var > 0)
+                                                    {
+
+                                                        valida(segmentod);
+
                                                     }
                                                 }
                                             }
@@ -469,7 +501,23 @@ namespace TdrPenafiel
                                                                         }
                                                                     }
                                                                 }
+                                                            else
+                                                            {
+                                                                DataTable results = facLabControler.TieneMercancias(esegmento);
+                                                                //PASO 4 - SI EXISTE LE ACTUALIZA EL ESTATUS A 9
+                                                                foreach (DataRow resl in results.Rows)
+                                                                {
+                                                                    string totald = resl["total"].ToString();
+                                                                    int num_var = Int32.Parse(totald);
+                                                                    if (num_var > 0)
+                                                                    {
+
+                                                                        valida(esegmento);
+
+                                                                    }
+                                                                }
                                                             }
+                                                        }
                                                         
                                                         }
                                                         else  // PASO 5 - SI NO EXISTE CONTINUA CON EL PROCESO DE TIMBRADO
@@ -525,6 +573,22 @@ namespace TdrPenafiel
                                                                 string titulo = "Error en el segmento: ";
                                                                 string mensaje = "Error la carta porte ya fue timbrada.";
                                                                 facLabControler.enviarNotificacion(esegmento, titulo, mensaje);
+                                                            }
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        DataTable results = facLabControler.TieneMercancias(esegmento);
+                                                        //PASO 4 - SI EXISTE LE ACTUALIZA EL ESTATUS A 9
+                                                        foreach (DataRow resl in results.Rows)
+                                                        {
+                                                            string totald = resl["total"].ToString();
+                                                            int num_var = Int32.Parse(totald);
+                                                            if (num_var > 0)
+                                                            {
+
+                                                                valida(esegmento);
+
                                                             }
                                                         }
                                                     }
